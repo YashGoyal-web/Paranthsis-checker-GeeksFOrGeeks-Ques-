@@ -1,0 +1,70 @@
+/*package whatever //do not write package name here */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+
+     static class isParanthesisBalanced {
+    
+    isParanthesisBalanced(String str){
+        
+        char []singleParanthesis = str.toCharArray();
+        Stack<Character> stack = new Stack();
+        
+        
+        for(int i = 0 ; i<singleParanthesis.length ; i++){
+            
+            if(singleParanthesis[i]=='{' 
+                    || singleParanthesis[i]=='[' 
+                    || singleParanthesis[i]=='('){
+		            stack.push(singleParanthesis[i]);
+                            
+		        }else if (!stack.empty()){
+                             char popped = stack.pop();
+                
+                            if(( popped == '{' && singleParanthesis[i] == '}')
+                                    ||
+                                ( popped == '[' && singleParanthesis[i] == ']')    
+                                    ||
+                                ( popped == '(' && singleParanthesis[i] == ')')    
+                                    ){
+                                continue;
+                            }else{
+                                System.out.println("not balanced");
+                                return;
+                            }
+                        }else{
+                                System.out.println("not balanced");
+                                return;
+                            }
+        }
+        if(stack.empty())
+            System.out.println("balanced");   
+        else
+            System.out.println("not balanced");
+                            
+    
+    }   
+}
+
+	public static void main (String[] args) {
+
+            int numberOfTimes = 0;
+		
+		Scanner sc = new Scanner(System.in);
+		
+		numberOfTimes = sc.nextInt();
+		ArrayList<String> str = new ArrayList();
+		
+		for(int i = 0 ;i<numberOfTimes;i++){
+		    str.add(sc.next());
+		}
+                
+                for(int i = 0 ; i <str.size() ; i++){
+                   isParanthesisBalanced isBalanced = new isParanthesisBalanced(str.get(i));
+                }
+		
+	}
+}
